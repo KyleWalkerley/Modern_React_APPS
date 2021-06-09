@@ -1,6 +1,11 @@
 import React from 'react';
 
 const SeasonDisplay = () => {
+    window.navigator.geolocation.getCurrentPosition(
+        () => console.log(position),
+        (err) => console.log(err)
+    );
+
     return <div>Season Display</div>
 };
 
