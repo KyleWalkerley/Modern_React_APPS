@@ -2,20 +2,37 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 class App extends React.Component {
-    constructor(){
+    constructor(props){
         super(props);
 
-        this.state ={lat: null};
+        //THIS IS THE ONLY TIME we do direct assignment
+        // to this.state
+        this.state ={lat: null, errorMessage: ''};
+
+        window.navigator.geolocation.getCurrentPosition(
+            position => {
+                // we called setstate!!!!
+               this.setState({ lat: position.coords.latitude });
+            },
+            err => {
+                this.setState({ errorMessage:err.message });
+            }
+        );
+
     }
 
     //React says we have to define render!!
     render() {
-        window.navigator.geolocation.getCurrentPosition(
-            position => console.log(position),
-            err => console.log(err)
-        );
+        if (this.state.errorMessage && !this.state.lat) {
+            return <div>Error: {this.state.errorMessage}</div>
+        }
 
-        return<div>Latitude:</div>;
+        if (!this.state.errorMessage && this.state.lat){
+            return <div>latitude: {this.state.lat}</div>
+        }
+
+        return <div>Loading!</div>
+
     }
 }
 
