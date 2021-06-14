@@ -1,12 +1,9 @@
 import React from 'react';
 
-const SeasonDisplay = () => {
-    window.navigator.geolocation.getCurrentPosition(
-        () => console.log(position),
-        (err) => console.log(err)
-    );
+const SeasonDisplay = props => {
+  console.log(props.lat);
 
-    return <div>Season Display</div>
+  return <div>Season Display</div>;
 };
 
-export default SeasonDisplay
+export default SeasonDisplay;
