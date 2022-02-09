@@ -23,6 +23,10 @@ const options = [
     label: 'German',
     value: 'de',
   },
+  {
+    label: 'Italian',
+    value: 'it',
+  },
 ];
 
 const Translate = () => {
